@@ -1,0 +1,20 @@
+<% provide(:title, "Home")%>
+<!DOCTYPE html>
+<html>
+<body>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+    	<ul>
+      <% @tasks.each do |task| %>
+      <div id = "task">
+        <li><%= task.title %> : <%= task.completed %></li>
+       <%= button_to "edit", task_path, method:'get', params: { id: task.id } %>
+       <%= button_to "destroy", task_path, method:'delete', params: { id: task.id } %>
+      </div>
+      <% end %>
+      </ul>
+      <%= button_to "Add new task", new_task_path %>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<%= form_for(@task, url: new_task_path) do |f| %>
+	<%= f.label :title %>
+	<%= f.text_field :title, class: 'form-control' %>
+
+	<%= f.label :completed, class: "checkbox inline" do %>
+		<%= f.check_box :completed %>
+		<span>Completed Task</span>
+	<% end %>
+<%= f.submit "Add", class: "btn btn-primary" %>
+<% end %>

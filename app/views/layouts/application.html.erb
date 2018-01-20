@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= (yield(:title)) %></title>
+    <%= render 'layouts/header' %>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<div class="center jumbotron">
+	  <h1>full_title(yield(:title))</h1>
+	</div>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+
+  <%= render 'layouts/footer' %>
+</html>
