@@ -6,15 +6,16 @@ class TaskController < ApplicationController
 	end
 
 	def create
-		@task = Task.new(task_params)
-		if !@task.nil?
-			@task.save
-			redirect_to root_path
-		end
+		#new tasklist --> add task
+		@tasklist = Tasklist.find_by_id(params[:id])
+		@task = @tasklist.tasks.create(task_params)
+		redirect_to root_path
 	end
 
 	def edit
-		@task = Task.find_by(params[:id])
+		@tasklist_id = params[:tasklist_id]
+		@tasklist = Tasklist.find(@tasklist_id)
+		@task = @tasklist.tasks.find_by_id(params[:id])
 	end
 
 	def update
@@ -30,7 +31,8 @@ class TaskController < ApplicationController
 	end
 
 	def task_params
-		params.require(:task).permit(:title, :completed)
+		params.require(:task).permit(:title, :completed, 
+									 tasklist_id: @tasklist_id)
 	end
 
 end

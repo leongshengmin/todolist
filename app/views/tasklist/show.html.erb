@@ -1,0 +1,40 @@
+<% provide(:title, "All tasks")%>
+<body>
+  <div class = "row">
+    <% @tasklists.each do |tasklist| %>
+    <div class = "col-sm-6">
+      <div class = "card">
+        <div class = "card-body">
+        <h2 class = "card-title"><%= tasklist.title %></h2>
+        <table>
+          <% tasklist.tasks.each do |task| %>
+          <tr>
+          <p class = "card-text">
+            <td>
+            <%= task.title %>
+          </td>
+          <td>
+            <%= check_box_tag('task_ids[]', task.id) %>
+          </td>
+          <td>
+            <%= button_to "Delete", 'task/' + task.id.to_s, method: 'delete', :class => 'button tasklist-btn' %>
+          </td>
+          <td>
+            <%= button_to "Edit", '/edit_task/' + task.id.to_s, method: 'get', :class => 'button tasklist-btn', params: { tasklist_id: tasklist.id } %>
+          </td>
+          </p>
+        </tr>
+          <% end %>
+        </table>
+          <div class = "row">
+           <%= link_to "New", new_tasklist_path, method: 'get', :class => 'button tasklist-btn' %>
+           <%= link_to "Delete", show_tasklist_path + '/' + tasklist.id.to_s, method: 'delete', :class => 'button tasklist-btn'%>
+           <%= link_to "Add Task", 'new_task/' + tasklist.id.to_s, method: 'get', :class => 'button tasklist-btn' %>
+         </div>
+        </div>
+      </div>
+      </div>
+      <% end %>
+    </div>
+
+</body>

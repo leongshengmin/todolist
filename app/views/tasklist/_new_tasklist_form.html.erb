@@ -1,0 +1,5 @@
+<%= form_for(@tasklist, url: new_tasklist_path) do |f| %>
+	<h4><%= f.label :title%></h4>
+	<%= f.text_field :title, class: 'form-control' %>
+<%= f.submit "Add", class: "button  show-btn" %>
+<% end %>

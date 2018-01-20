@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119151053) do
+ActiveRecord::Schema.define(version: 20180120053518) do
+
+# Could not dump table "tasklists" because of following StandardError
+#   Unknown type 'task' for column 'tasks'
 
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.boolean "completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tasklist_id"
+    t.index ["tasklist_id"], name: "index_tasks_on_tasklist_id"
   end
+
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'tasklist' for column 'tasklists'
 
 end

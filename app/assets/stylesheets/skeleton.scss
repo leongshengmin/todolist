@@ -1,0 +1,125 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+
+$gray-medium-light: #eaeaea;
+$white: #fff;
+$gray-light: #777;
+$gray: #555;
+$gray-darker: #222;
+
+/*console debugger*/
+@mixin box_sizing($box-model) {
+  -moz-box-sizing:    $box-model;
+  -webkit-box-sizing: $box-model;
+  box-sizing:         $box-model;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing(border-box);
+}
+/*default styling*/
+body {
+  padding-top: 100px;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: $white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+
+  &:hover {
+  	color: $white;
+  	text-decoration: none;
+  }
+}
+
+nav ul{
+	float: right;
+
+	li {
+		float: left;
+	}
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-medium-light;
+  color: $gray-light;
+
+  a {
+  	color: gray;
+
+	&:hover {
+	  color: gray-darker;
+	}
+  }
+
+  small {
+	float: left;
+	padding-left: 5px;
+  }
+
+  ul {
+	  float: right;
+	  list-style: none;
+
+	  li {
+	  	float: left;
+		margin-left: 15px;
+		padding-right: 5px;
+	  }
+	}
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+
+  h1 {
+  	margin-bottom: 10px;
+  }
+}
+
+/*general font sizing*/
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $gray-medium-light;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}

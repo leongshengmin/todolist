@@ -1,19 +1,21 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= (yield(:title)) %></title>
+    <title><%= full_title(yield(:title)) %></title>
     <%= render 'layouts/header' %>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 	<div class="center jumbotron">
-	  <h1>full_title(yield(:title))</h1>
+    <h1><%= full_title(yield(:title)) %></h1>
 	</div>
   </head>
 
   <body>
     <%= yield %>
   </body>
-
+  <%= debug(params) if Rails.env.development? %>
   <%= render 'layouts/footer' %>
 </html>

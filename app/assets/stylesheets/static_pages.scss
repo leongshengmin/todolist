@@ -1,3 +1,32 @@
-// Place all the styles related to the static_pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*button styling*/
+@mixin button-bg($bg) {
+  background: $bg;
+  &:hover {
+    background:darken($bg,3%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    background:darken($bg,5%);
+  } 
+}
+
+.button {
+ text-decoration:none;
+ padding:10px 15px;
+ border-radius:5px;
+ font-family: 'Poiret One';
+ font-size:2em;
+}
+
+.btn-white {
+   @include button-bg(#ffffff);
+}
+
+.home-btn {
+	float: left;
+}
+
+.wrap {
+  margin:auto;
+  float: center;
+}
