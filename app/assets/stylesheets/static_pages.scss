@@ -15,7 +15,6 @@
  padding:10px 15px;
  border-radius:5px;
  font-family: 'Poiret One';
- font-size:2em;
 }
 
 .btn-white {
@@ -24,9 +23,14 @@
 
 .home-btn {
 	float: left;
+  font-size: 2em;
 }
 
 .wrap {
   margin:auto;
   float: center;
+}
+
+.row {
+  margin-top: 50px;
 }

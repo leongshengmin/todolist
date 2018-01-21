@@ -1,23 +1,28 @@
 Rails.application.routes.draw do
+	#session
+	get '/login_path', to: 'sessions#new'
+	post '/login_path', to: 'sessions#create'
 
 	#task
-	get '/new_task/:id', to: 'task#new'
-	post '/new_task/:id', to: 'task#create'
-	get '/edit_task/:id', to: 'task#edit'
-	post '/task/:id', to: 'task#update'
-	patch '/edit_task/:id', to: 'task#update'
-	delete '/task/:id', to: 'task#destroy'
+	get '/user/:user_id/new_task', to: 'task#new'
+	post '/user/:user_id/new_task', to: 'task#create'
+	get '/user/:user_id/edit_task/:task_id', to: 'task#edit'
+	post '/user/:user_id/task/:task_id', to: 'task#update'
+	patch '/user/:user_id/edit_task/:task_id', to: 'task#update'
+	delete '/user/:user_id/task/:task_id', to: 'task#destroy'
 	
+	#tasklist
+	get '/user/:user_id/new_tasklist', to: 'tasklist#new'
+	get '/user/:user_id/show_tasklist', to: 'tasklist#show'
+	post '/user/:user_id/new_tasklist', to: 'tasklist#create'
+	get '/user/:user_id/show_tasklist/:tasklist_id', to: 'tasklist#destroy'
+	delete '/user/:user_id/show_tasklist/:tasklist_id', to: 'tasklist#destroy'
+
 	#user
 	get '/signup', to: 'user#new'
 	post '/signup', to: 'user#create'
 
-	#tasklist
-	get '/new_tasklist', to: 'tasklist#new'
-	get '/show_tasklist', to: 'tasklist#show'
-	post '/new_tasklist', to: 'tasklist#create'
-	delete 'show_tasklist/:id', to: 'tasklist#destroy'
-
+	resources :sessions
 	resources :user do
 		resources :tasklist do
 			resources :task

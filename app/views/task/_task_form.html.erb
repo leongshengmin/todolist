@@ -1,4 +1,7 @@
-<%= form_for(@task, url: params[:id].to_s ) do |f| %>
+<%= form_for(@task, url: '/user/' + params[:user_id] + '/new_task') do |f| %>
+<% puts "hidden_field_tag with value of " + params[:tasklist_id] %>
+<%= hidden_field_tag("tasklist_id", params[:tasklist_id]) %>
+<% "finished writing hidden_field_tag" %>
 	<%= f.label :title %>
 	<%= f.text_field :title, class: 'form-control' %>
 
@@ -6,5 +9,6 @@
 		<%= f.check_box :completed %>
 		<span>Completed Task</span>
 	<% end %>
+
 <%= f.submit "Add", class: "btn btn-primary" %>
 <% end %>

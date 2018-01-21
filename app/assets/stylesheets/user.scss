@@ -1,3 +1,20 @@
-// Place all the styles related to the user controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*display error message*/
+#err_expl {
+  color: red;
+
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+/*
+rails automatically wraps fields with invalid submission -> field_with_errors
+Sass @extend function to include the functionality of Bootstrap class has-error*/
+.field_with_errors {
+  @extend .has-error !optional;
+  .form-control {
+    color: red;
+    font-weight: 1px;
+  }
+}

@@ -1,5 +1,8 @@
 <% provide(:title, "All tasks")%>
 <body>
+  <div class ="row">
+  <%= link_to "Create New Tasklist", '/user/' + params[:user_id] + '/new_tasklist', method: 'get', class: 'button btn-white main-btn' %>
+</div>
   <div class = "row">
     <% @tasklists.each do |tasklist| %>
     <div class = "col-sm-6">
@@ -10,26 +13,25 @@
           <% tasklist.tasks.each do |task| %>
           <tr>
           <p class = "card-text">
-            <td>
+            <td class = "col-md-6">
             <%= task.title %>
           </td>
-          <td>
+          <td class="col-md-3">
             <%= check_box_tag('task_ids[]', task.id) %>
           </td>
-          <td>
-            <%= button_to "Delete", 'task/' + task.id.to_s, method: 'delete', :class => 'button tasklist-btn' %>
+          <td class="col-md-1">
+            <%= button_to "Delete", user_tasklist_url, method: 'delete', :class => 'button tasklist-btn', params: { tasklist_id: tasklist.id } %>
           </td>
-          <td>
-            <%= button_to "Edit", '/edit_task/' + task.id.to_s, method: 'get', :class => 'button tasklist-btn', params: { tasklist_id: tasklist.id } %>
+          <td class="col-md-1">
+            <%= button_to "Edit", 'user/' + params[:user_id] + '/edit_task/' + task.id.to_s, method: 'get', :class => 'button tasklist-btn', params: { tasklist_id: tasklist.id } %>
           </td>
           </p>
         </tr>
           <% end %>
         </table>
           <div class = "row">
-           <%= link_to "New", new_tasklist_path, method: 'get', :class => 'button tasklist-btn' %>
-           <%= link_to "Delete", show_tasklist_path + '/' + tasklist.id.to_s, method: 'delete', :class => 'button tasklist-btn'%>
-           <%= link_to "Add Task", 'new_task/' + tasklist.id.to_s, method: 'get', :class => 'button tasklist-btn' %>
+           <%= link_to "Delete", '/user/' + params[:user_id] + '/show_tasklist/' + tasklist.id.to_s, method: 'delete', :class => 'button tasklist-btn'%>
+           <%= button_to "Add Task", '/user/' + params[:user_id] + '/new_task' , method: 'get', :class => 'button tasklist-btn', params: { tasklist_id: tasklist.id } %>
          </div>
         </div>
       </div>
