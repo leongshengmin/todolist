@@ -4,44 +4,50 @@ class TasklistController < ApplicationController
 	end
 
 	def create
-		@user = getUser
-		@tasklist = @user.tasklists.create(tasklist_params)
-		redirect_to '/user/' + params[:user_id] + '/show_tasklist'
+		user = getUser
+		tasklist = user.tasklists.create(tasklist_params)
+		showTasklists(user)
 	end
 
+	def index
+		user = getUser
+		@tasklists = user.tasklists
+		render 'show'
+	end
 	#displays all tasklists
 	#tasks cat into indv tasklist group
 	def show 
-		@user = getUser
-		@tasklists = @user.tasklists
 	end
 
 	def destroy
-		tasklist = Tasklist.find_by_id(params[:tasklist_id])
-		puts "tasklist searched:"
+		tasklist = Tasklist.find_by_id(params[:id])
+		user = getUser
+		user_tasklist = user.tasklists.find_by_id(params[:id])
+		puts "tasklist to delete:"
 		puts tasklist
+		puts params[:id]
+		puts "all tasklists"
+		puts Tasklist.all
 		if !tasklist.nil?
-			@user = getUser
-			@user_tasklist = @user.tasklists.find_by_id(params[:tasklist_id])
 			tasklist.destroy
-			if !@user_tasklist.nil?
-				puts "user's tasklist is not empty"
-				puts "deleting tasklist in user acct"
+			if !user_tasklist.nil?
+				puts "user's tasklist"
 				puts @user_tasklist
-				@user_tasklist.destroy
-				puts "destroyed"
+				user_tasklist.destroy
 			end
-			puts "destroyed tasklist"
 		end
-		puts "no tasklist found"
-		redirect_to '/user/' + params[:user_id] + '/show_tasklist'
+		showTasklists(user)
 	end
+
+	def showTasklists(user)
+  		redirect_to(user_tasklist_index_path(user))
+  	end
 
 	def getUser
 		return User.find_by_id(params[:user_id])
 	end
 
 	def tasklist_params
-		params.require(:tasklist).permit(:title, user_id:@user.id)
+		params.require(:tasklist).permit(:title, user_id: params[:user_id])
 	end
 end

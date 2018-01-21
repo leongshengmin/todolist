@@ -1,10 +1,11 @@
 <% provide(:title, "All tasks")%>
 <body>
   <div class ="row">
-  <%= link_to "Create New Tasklist", '/user/' + params[:user_id] + '/new_tasklist', method: 'get', class: 'button btn-white main-btn' %>
+  <%= link_to "Create New Tasklist", new_user_tasklist_path(params[:user_id]), method: 'get', class: 'button btn-white main-btn' %>
 </div>
   <div class = "row">
     <% @tasklists.each do |tasklist| %>
+    <%= hidden_field_tag("tasklist_id", tasklist.id) %>
     <div class = "col-sm-6">
       <div class = "card">
         <div class = "card-body">
@@ -20,18 +21,19 @@
             <%= check_box_tag('task_ids[]', task.id) %>
           </td>
           <td class="col-md-1">
-            <%= button_to "Delete", user_tasklist_url, method: 'delete', :class => 'button tasklist-btn', params: { tasklist_id: tasklist.id } %>
+            <%= link_to "Delete", user_task_path(params[:user_id], task.id), method: 'delete', :class => 'button tasklist-btn' %>
           </td>
           <td class="col-md-1">
-            <%= button_to "Edit", 'user/' + params[:user_id] + '/edit_task/' + task.id.to_s, method: 'get', :class => 'button tasklist-btn', params: { tasklist_id: tasklist.id } %>
+            <%= link_to "Edit", edit_user_task_path(params[:user_id], task.id), method: 'get', :class => 'button tasklist-btn' %>
           </td>
           </p>
         </tr>
           <% end %>
         </table>
           <div class = "row">
-           <%= link_to "Delete", '/user/' + params[:user_id] + '/show_tasklist/' + tasklist.id.to_s, method: 'delete', :class => 'button tasklist-btn'%>
-           <%= button_to "Add Task", '/user/' + params[:user_id] + '/new_task' , method: 'get', :class => 'button tasklist-btn', params: { tasklist_id: tasklist.id } %>
+            <%= hidden_field_tag("user_id", params[:user_id]) %>
+           <%= link_to "Delete", user_tasklist_path(params[:user_id], tasklist.id), method: 'delete', :class => 'button tasklist-btn'%>
+           <%= link_to "Add Task", new_user_task_path(params[:user_id], tasklist_id: tasklist.id), method: 'get', :class => 'button tasklist-btn' %>
          </div>
         </div>
       </div>

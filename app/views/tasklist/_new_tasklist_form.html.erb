@@ -1,4 +1,4 @@
-<%= form_for(@tasklist, url: "/user/" + params[:user_id] + "/new_tasklist/") do |f| %>
+<%= form_for @tasklist, url: user_tasklist_index_path(params[:user_id]) do |f| %>
 	<h4><%= f.label :title%></h4>
 	<%= f.text_field :title, class: 'form-control' %>
 <%= f.submit "Add", class: "button  show-btn" %>

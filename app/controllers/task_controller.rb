@@ -6,52 +6,48 @@ class TaskController < ApplicationController
 	end
 
 	def create
-		#new tasklist --> add task
-		tasklist = Tasklist.find_by_id(params[:tasklist_id])
+		tasklist = findTasklist
 		tasklist.tasks.create(task_params)
-		getUserHomepage
+		showTasklists
 	end
 
 	def edit
-		tasklist_id = params[:tasklist_id]
-		tasklist = Tasklist.find_by_id(tasklist_id)
-		@task = tasklist.tasks.find_by_id(params[:task_id])
+		@task = Task.find_by_id(params[:id])
 	end
 
 	def update
-		if Task.update(params[:task_id], task_params)
-			getUserHomepage
+		if Task.update(params[:id], task_params)
+			showTasklists
 		end
 	end
 
 	def destroy
-		task_to_remove = Task.find_by_id(params[:task_id])
+		task_to_remove = Task.find_by_id(params[:id])
 		user = User.find_by_id(params[:user_id])
-		user_task = user.tasklists.find_by_id(params[:task_id])
+		user_task = user.tasklists.find_by_id(params[:id])
 		if !task_to_remove.nil?
 			task_to_remove.destroy
 			if !user_task.nil?
 				user_task.destroy
 			end
 		end
-		getUserHomepage
+		showTasklists
 	end
 
-	def getUserHomepage
-		redirect_to '/user/' + params[:user_id] + '/show_tasklist'
+	def findTasklist
+		tasklist_id = params[:tasklist_id]
+		tasklist = Tasklist.find_by_id(tasklist_id)
+		return tasklist
 	end
 
-	def getTasklistID
-		if @tasklist_id.nil?
-			return params[:tasklist_id]
-		else
-			return @tasklist_id
-		end
-	end
+	def showTasklists
+		user = User.find_by_id(params[:user_id])
+  		redirect_to(user_tasklist_index_path(user))
+  	end
 
 	def task_params
 		params.require(:task).permit(:title, :completed, 
-									 tasklist_id: getTasklistID)
+									 tasklist_id: params[:tasklist_id])
 	end
 
 end
