@@ -2,9 +2,8 @@
 	<%= f.label :title %>
 	<%= f.text_field :title, class: 'form-control' %>
 
-	<%= f.label :completed, class: "checkbox inline" do %>
-		<%= f.check_box :completed %>
-		<span>Completed Task</span>
-	<% end %>
-<%= f.submit "Amend", class: "btn btn-primary"%>
+	<%= f.label :date %>
+	<%= f.date_select :date, :order => [:day, :month, :year] %>
+	
+	<%= f.submit "Amend", class: "btn btn-primary"%>
 <% end %>

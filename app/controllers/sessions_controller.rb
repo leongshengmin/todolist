@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		@user = User.find_by_email(params[:email].downcase)
-		if @user && @user.authenticate(params[:password])
+		@user = User.find_by_email(params[:sessions][:email].downcase)
+		if @user && @user.authenticate(params[:sessions][:password])
 			flash[:success] = "Logged in successfully"
 			login(@user)
 			showTasklists(@user)
@@ -14,6 +14,10 @@ class SessionsController < ApplicationController
 			flash.now[:danger] = "Invalid email or password"
   			render 'new'
   		end
+  	end
+
+  	def logout
+  		logout
   	end
 
   	def showTasklists(user)

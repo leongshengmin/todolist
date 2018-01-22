@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120053518) do
+ActiveRecord::Schema.define(version: 20180122153620) do
 
 # Could not dump table "tasklists" because of following StandardError
-#   Unknown type 'task' for column 'tasks'
+#   Unknown type '' for column 'tasks'
 
   create_table "tasks", force: :cascade do |t|
     t.string "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180120053518) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "tasklist_id"
+    t.date "date"
     t.index ["tasklist_id"], name: "index_tasks_on_tasklist_id"
   end
 

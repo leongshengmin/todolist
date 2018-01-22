@@ -1,0 +1,9 @@
+$(document).ready(function() {
+
+	$("#modal_form").html("<%= escape_javascript(render :partial => 'modal_for_new_task') %>");
+	$("#modal-center").modal("show");
+
+	  $("#close-btn").click(function() {
+	    $('#modal-center').modal('hide');
+	});
+});

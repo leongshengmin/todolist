@@ -1,13 +1,19 @@
+body {
+	margin-left:5px;
+	margin-right: 5px;
+}
+
 /*button styling*/
 @mixin button-bg($bg) {
   &:hover {
-    background:darken($bg,3%);
+    background:darken($bg,2%);
     transition: all 0.3s ease;
   }
 }
 
 .button {
  text-decoration:none;
+ margin-top: 5px;
  padding:5px 10px;
  border-radius:5px;
  border: none;
@@ -16,15 +22,15 @@
 }
 
 .tasklist-btn {
-	@include button-bg(#ffffff);
- 	font-size:1em;
+	@include button-bg(#F0FFF0);
+ 	font-size:1.5em;
 	background: none;
 	float: right;
 	margin-right: 20px;
 }
 
 .main-btn {
-	@include button-bg(#ffffff);
+	@include button-bg(#E0FFFF);
 	font-size: 2em;
 	float: right;
 	margin-right: 50px;
@@ -36,4 +42,18 @@
 
 .wrap {
 	margin-left: 25px;
+}
+
+.card-text {
+	font-size: 1.5em;
+	padding-bottom: 10px;
+}
+
+.card-title {
+	font-size: 3em;
+	padding-bottom: 10px;
+}
+
+.checkbox-rounded [type="checkbox"][class*='filled-in'] {
+    border-radius: 50%;
 }
