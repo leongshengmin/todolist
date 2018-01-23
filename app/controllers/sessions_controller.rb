@@ -17,7 +17,16 @@ class SessionsController < ApplicationController
   	end
 
   	def logout
+  		removeCompleted
   		logout
+  	end
+
+  	def removeCompleted
+  		Task.all.each do |t| 
+  			if t.completed
+  				t.destroy
+  			end
+  		end
   	end
 
   	def showTasklists(user)

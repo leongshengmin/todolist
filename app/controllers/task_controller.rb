@@ -48,10 +48,13 @@ class TaskController < ApplicationController
 	def modal_for_search
 		if params[:searchterm]
 			@tasks_found = Task.search(params[:searchterm])
+			@tasklists_found = Tasklist.search(params[:searchterm])
 		else 
 			@tasks_found = Task.all
 		end
-		showTasklists
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	def findTasklist
