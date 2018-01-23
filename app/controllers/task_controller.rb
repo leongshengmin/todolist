@@ -1,5 +1,4 @@
 class TaskController < ApplicationController
-
 	include TaskHelper
 	def new
 		@task = Task.new
@@ -46,12 +45,13 @@ class TaskController < ApplicationController
 		showTasklists
 	end
 
-	def findTask
+	def modal_for_search
 		if params[:searchterm]
-			@tasks_found = Task.search_by_task(params[:searchterm]).with_pg_search_highlight
+			@tasks_found = Task.search(params[:searchterm])
 		else 
 			@tasks_found = Task.all
 		end
+		showTasklists
 	end
 
 	def findTasklist

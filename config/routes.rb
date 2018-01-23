@@ -10,11 +10,11 @@ Rails.application.routes.draw do
 
 	#task
 	get '/completed/:id', to: 'task#completed', as: 'completed'
-	get '/findtask', to: 'task#findTask'
 
 	#modals
-	#new task
+	#task
 	get '/modal_for_new_task' , to: 'task#modal_for_new_task'
+	get '/modal_for_search/:user_id', to: 'task#modal_for_search', as: 'search'
 
 	resources :sessions
 	resources :user do
@@ -25,5 +25,6 @@ Rails.application.routes.draw do
 		resources :tasklist
 	end
 
+	resources :search, only: [:modal_for_search]
 	root to: 'static_pages#home'
 end

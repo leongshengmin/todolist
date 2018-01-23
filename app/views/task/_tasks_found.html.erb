@@ -1,3 +1,7 @@
-<% @tasks_found.each do |task| %>
-<h4> <%= task.title %> | <%= task.date %> </h4>
-<% end %> 
+<% if @tasks_found.blank? %>
+	<p> No tasks found </p>
+<% else %>
+	<% @tasks_found.each do |task| %>
+	<h4> <%= task.title %> | <%= task.date %> | <%= task.completed %> </h4>
+	<% end %> 
+<% end %>

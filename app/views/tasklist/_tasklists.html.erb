@@ -32,7 +32,7 @@
         </table>
         <div class = "row">
          <%= link_to "Delete", user_tasklist_path(@user_id, tasklist.id), method: 'delete', :class => 'button tasklist-btn'%>
-         <%= link_to "Add Task", modal_for_new_task_path(user_id: @user_id, tasklist_id: tasklist.id), method: 'get', remote: true, 'data-toggle' => 'modal', 'data-target' =>'#modal-center', 'data-backdrop' => '', class: 'button tasklist_btn' %>
+         <%= button_to "Add Task", modal_for_new_task_path(user_id: @user_id, tasklist_id: tasklist.id), method: 'get', remote: true, 'data-toggle' => 'modal', 'data-target' =>'#modal-center', 'data-backdrop' => '', class: 'button tasklist_btn', style: "margin-left: 30px" %>
         </div>
       </div>
     </div>

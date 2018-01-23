@@ -1,8 +1,12 @@
 <% provide(:title, "All tasks")%>
 <% @user_id = params[:user_id] %>
 <body>
-  <%= render 'searchfield' %>
+  <div class ="row">
+  <%= link_to "Create New Tasklist", new_user_tasklist_path(@user_id), method: 'get', class: 'button btn-white main-btn' %>
+   <%= render 'searchfield' %>
+  </div>
+ 
   <%= render 'tasklists' %>
     <div id = "modal_form"></div>
-    <div id = "search_results_modal"></div>
+    <div id = "search_results_modal"><%= render '/task/modal_for_search' %></div>
 </body>

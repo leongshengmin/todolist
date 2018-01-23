@@ -23,16 +23,9 @@ class TasklistController < ApplicationController
 		tasklist = Tasklist.find_by_id(params[:id])
 		user = getUser
 		user_tasklist = user.tasklists.find_by_id(params[:id])
-		puts "tasklist to delete:"
-		puts tasklist
-		puts params[:id]
-		puts "all tasklists"
-		puts Tasklist.all
 		if !tasklist.nil?
 			tasklist.destroy
 			if !user_tasklist.nil?
-				puts "user's tasklist"
-				puts @user_tasklist
 				user_tasklist.destroy
 			end
 		end

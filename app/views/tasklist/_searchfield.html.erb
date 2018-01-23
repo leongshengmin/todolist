@@ -1,7 +1,4 @@
-<div class ="row">
-  <%= link_to "Create New Tasklist", new_user_tasklist_path(@user_id), method: 'get', class: 'button btn-white main-btn' %>
-  <%= form_tag findtask_path, method: 'get' do %>
-  <%= text_field_tag 'searchterm', params[:searchterm], placeholder: "Enter Task To Search For" %>
-  <%= submit_tag 'Search!', method: 'get', remote: true, 'data-toggle' => 'modal', 'data-target' =>'#search-modal', 'data-backdrop' => '' %>
+  <%= form_tag url: search_path(user_id: params[:user_id]), method: 'get' do %>
+  <%= text_field_tag 'searchterm', params[:searchterm] %>
+  <%= submit_tag 'Search!', method: 'get', remote: true, 'data-toggle' => 'modal', 'data-target' =>'#search-modal', 'data-backdrop' => ''%>
   <% end %>
-</div>
