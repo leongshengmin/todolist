@@ -24,7 +24,7 @@ $gray-darker: #222;
 }
 /*default styling*/
 body {
-  padding: 20px, 100px, 20px, 0;
+  padding: 20px, 100px, 20px, 0px;
 }
 
 #logo {
@@ -36,6 +36,7 @@ body {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+  font-family: 'Poiret One';
 
   &:hover {
   	color: $white;
@@ -49,6 +50,10 @@ nav ul{
 	li {
 		float: left;
 	}
+}
+
+body {
+  padding-top: 100px;
 }
 
 footer {
@@ -96,6 +101,11 @@ textarea {
   h1 {
   	margin-bottom: 10px;
   }
+}
+
+.header-btn {
+  font-family: 'Poiret One';
+  font-size: 1.5em;
 }
 
 /*general font sizing*/

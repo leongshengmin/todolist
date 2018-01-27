@@ -1,5 +1,6 @@
 <div class = "row">
     <% @tasklists.each do |tasklist| %>
+    <% @tasklist_id = tasklist.id %>
       <div class = "card card-cascade wider">
         <div class="view overlay hm-white-slight">
         </div>
@@ -7,7 +8,7 @@
         <h2 class = "card-title text-center"><%= tasklist.title %></h2>
         <table>
           <% tasklist.tasks.each do |task| %>
-          <tr>
+          <tr class = "row">
           <td class="col-md-3">
           <h4 class = "card-text">
             <%= task.title %>
@@ -19,20 +20,20 @@
           </h5>
           </td>
           <td class="col-sm-5">
-            <%= link_to "completed", completed_path(task.id, user_id: @user_id), :class => 'button tasklist-btn' %>
+            <%= button_to "Done", completed_path(task.id), params: { tasklist_id: @tasklist_id, user_id: @user_id }, method: 'get', class: 'button tasklist-btn' %>
           </td>
           <td class="col-sm-5">
-            <%= link_to "Delete", user_task_path(@user_id, task.id, tasklist_id: tasklist.id), method: 'delete', :class => 'button tasklist-btn' %>
+            <%= link_to "Delete", user_task_path(@user_id, task.id, tasklist_id: @tasklist_id), method: 'delete', :class => 'button tasklist-btn' %>
           </td>
           <td class="col-sm-3">
-          <%= link_to "Edit", edit_user_task_path(@user_id, task.id, tasklist_id: tasklist.id), method: 'get', :class => 'button tasklist-btn' %>
+          <%= link_to "Edit", edit_user_task_path(@user_id, task.id, tasklist_id: @tasklist_id), method: 'get', :class => 'button tasklist-btn' %>
           </td>
         </tr>
         <% end %>
         </table>
         <div class = "row">
-         <%= link_to "Delete", user_tasklist_path(@user_id, tasklist.id), method: 'delete', :class => 'button tasklist-btn'%>
-         <%= button_to "Add Task", modal_for_new_task_path(user_id: @user_id, tasklist_id: tasklist.id), method: 'get', remote: true, 'data-toggle' => 'modal', 'data-target' =>'#modal-center', 'data-backdrop' => '', class: 'button tasklist_btn', style: "margin-left: 30px" %>
+         <%= link_to "Delete", user_tasklist_path(@user_id, @tasklist_id), method: 'delete', :class => 'button tasklist-btn'%>
+         <%= button_to "Add Task", modal_for_new_task_path(user_id: @user_id, tasklist_id: tasklist.id), method: 'get', remote: true, 'data-toggle' => 'modal', 'data-target' =>'#modal-center', 'data-backdrop' => '', class: 'button tasklist_btn add-task-btn btn-white' %>
         </div>
       </div>
     </div>

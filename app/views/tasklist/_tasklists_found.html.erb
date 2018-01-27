@@ -1,0 +1,20 @@
+<% if @tasklists_found.blank? %>
+	<p> No Task Lists found </p>
+<% else %>
+	<h4>Task Lists found: </h4>
+	<% @tasklists_found.each do |tasklist| %>
+	<ul>
+		<li><h4><%= tasklist.title %></h4></li>
+		<% tasklist.tasks.each do |task| %>
+		<div class = "row">
+			<div class = "col-sm-6">
+				<p><%= task.title %></p>
+			</div>
+			<div class = "col-sm-6">
+				<p><%= task.date %></p>
+			</div>
+		</div>
+		<% end %>
+	</ul>
+	<% end %> 
+<% end %>

@@ -1,4 +1,4 @@
-  <%= form_tag url: search_path(user_id: params[:user_id]), method: 'get' do %>
-  <%= text_field_tag 'searchterm', params[:searchterm] %>
-  <%= submit_tag 'Search!', method: 'get', remote: true, 'data-toggle' => 'modal', 'data-target' =>'#search-modal', 'data-backdrop' => ''%>
+  <%= form_tag( { action: 'modal_for_search', controller: 'task' }, { remote: true } ) do %>
+  <%= text_field_tag 'searchterm', params[:searchterm], class: "input-large search-query" %>
+  <%= button_to  'Search!', modal_for_search_path, remote: true, 'data-toggle' => 'modal', 'data-target' =>'#search-modal', 'data-backdrop' => '', class: "button" %>
   <% end %>

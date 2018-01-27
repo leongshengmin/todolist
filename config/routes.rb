@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 	#modals
 	#task
 	get '/modal_for_new_task' , to: 'task#modal_for_new_task'
-	get '/modal_for_search/:user_id', to: 'task#modal_for_search', as: 'search'
+	get '/modal_for_search', to: 'task#modal_for_search'
+	post '/modal_for_search', to: 'task#modal_for_search', default: { format: :js }
 
 	resources :sessions
 	resources :user do
@@ -25,6 +26,5 @@ Rails.application.routes.draw do
 		resources :tasklist
 	end
 
-	resources :search, only: [:modal_for_search]
 	root to: 'static_pages#home'
 end

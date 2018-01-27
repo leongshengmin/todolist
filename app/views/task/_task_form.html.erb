@@ -1,10 +1,10 @@
 <%= form_for Task.new, url: user_task_index_path(params[:user_id]), method: 'post' do |f| %>
 <%= hidden_field_tag("tasklist_id", params[:tasklist_id]) %>
-	<%= f.label :title %>
+	<%= f.label :title, class: "label" %>
 	<%= f.text_field :title, class: 'form-control' %>
 
-	<%= f.label :date %>
+	<%= f.label :date, class: "label" %>
 	<%= f.date_field :date, class: 'form-control' %>
 
-<%= f.submit "Add", class: "btn btn-primary", style: 'margin-top: 5px' %>
+<%= f.submit "Add", class: "btn btn-primary" %>
 <% end %>

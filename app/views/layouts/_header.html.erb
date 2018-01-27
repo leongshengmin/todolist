@@ -4,15 +4,15 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if params[:user_id].nil? %>
-              <li><%= link_to "Home",   root_path %></li>
+              <li><%= link_to "Home", root_path, class: 'header-btn' %></li>
             <% else %>
-              <li><%= link_to "Home",   user_tasklist_index_path(params[:user_id]) %></li>
+              <li><%= link_to "Home", user_tasklist_index_path(params[:user_id]), class: 'header-btn' %></li>
             <% end %>
             
             <% if is_in_session? %>
-                <li><%= link_to "Log out", logout_path %></li>
+                <li><%= link_to "Log out", logout_path,  class: 'header-btn' %></li>
             <% else %>
-              <li><%= link_to "Log in", login_path %></li>
+              <li><%= link_to "Log in", login_path, class: 'header-btn' %></li>
             <% end %>
           </ul>
         </nav>

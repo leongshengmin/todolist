@@ -17,16 +17,8 @@ class SessionsController < ApplicationController
   	end
 
   	def logout
-  		removeCompleted
   		logout
-  	end
-
-  	def removeCompleted
-  		Task.all.each do |t| 
-  			if t.completed
-  				t.destroy
-  			end
-  		end
+      redirect_to root_path
   	end
 
   	def showTasklists(user)

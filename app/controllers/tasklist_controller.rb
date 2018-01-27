@@ -3,22 +3,28 @@ class TasklistController < ApplicationController
 		@tasklist = Tasklist.new
 	end
 
+	#creates new tasklist bound to user
+	#redirects to page showing all of user's tasklists
 	def create
 		user = getUser
 		tasklist = user.tasklists.create(tasklist_params)
 		showTasklists(user)
 	end
 
+	#receives user data, corr tasklists
+	#renders the show page
 	def index
 		user = getUser
 		@tasklists = user.tasklists
 		render 'show'
 	end
-	#displays all tasklists
-	#tasks cat into indv tasklist group
+	
+	#shows all tasklists
 	def show 
 	end
 
+	#removes tasklist from database
+	#and from user's tasklists
 	def destroy
 		tasklist = Tasklist.find_by_id(params[:id])
 		user = getUser
